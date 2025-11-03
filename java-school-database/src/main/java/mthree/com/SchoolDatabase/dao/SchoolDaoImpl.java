@@ -100,7 +100,8 @@ public class SchoolDaoImpl implements SchoolDao {
         // Need to add in the sid for Robert Dylan.  Use sid: 123
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "INSERT INTO student (sid, fName, lName)\n" +
+                "VALUES (123, 'Robert', 'Dylan');";
 
         // YOUR CODE ENDS HERE
          System.out.println(jdbcTemplate.update(sql));
@@ -113,7 +114,11 @@ public class SchoolDaoImpl implements SchoolDao {
         // You will need to include a sid in your query.  Use 123
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "INSERT INTO course_student (student_id, course_id)\n" +
+                "VALUES (\n" +
+                "    123,\n" +
+                "    SELECT cid FROM course WHERE courseCode = 'CS148'\n" +
+                ");";
 
         // YOUR CODE ENDS HERE
         jdbcTemplate.update(sql);
@@ -124,7 +129,9 @@ public class SchoolDaoImpl implements SchoolDao {
         // Write a query to change the course description for course CS305 to "Advanced Python with Flask".
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "UPDATE course\n" +
+                "SET courseDesc = 'Advanced Python with Flask'\n" +
+                "WHERE courseCode = 'CS305';";
 
         // YOUR CODE ENDS HERE
         jdbcTemplate.update(sql);
@@ -135,7 +142,8 @@ public class SchoolDaoImpl implements SchoolDao {
         // Write a query to remove David Mitchell as a teacher.
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "DELETE FROM teacher\n" +
+                "WHERE tFName = 'David' AND tLName = 'Mitchell';";
 
         // YOUR CODE ENDS HERE
         jdbcTemplate.update(sql);
